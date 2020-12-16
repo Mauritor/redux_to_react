@@ -1,4 +1,7 @@
-import React, { Component, Fragment } from 'react'
+import React, { Component, Fragment } from 'react';
+import { connect } from 'react-redux';
+
+import { buy_pokemon_action, return_pokemon_action } from '../redux/actions/gameShopAction'
 
 class CompraPokemon extends Component {
     render() {
@@ -6,10 +9,20 @@ class CompraPokemon extends Component {
             <Fragment>
                 <div className="row text-center">
                     <div className="col-12">
-                        <button className="btn btn-dark btn-sm mb-2">Comprar Pokemon</button>
+                        <button 
+                        className="btn btn-dark btn-sm mb-2"
+                        onClick={()=>{
+                            this.props.buy_pokemon_action(1)
+                        }}
+                        >Comprar Pokemon</button>
                     </div>
                     <div className="col-12">
-                        <button className="btn btn-dark btn-sm">Regresar Pokemon</button>
+                        <button 
+                        className="btn btn-dark btn-sm"
+                        onClick={()=>{
+                            this.props.return_pokemon_action(1)
+                        }}
+                        >Regresar Pokemon</button>
                     </div>
                 </div>
 
@@ -18,5 +31,8 @@ class CompraPokemon extends Component {
         )
     }
 }
-
-export default CompraPokemon
+const mapDispatchToProps = {
+    buy_pokemon_action, 
+    return_pokemon_action
+}
+export default connect(null, mapDispatchToProps)(CompraPokemon)
